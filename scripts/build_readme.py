@@ -118,6 +118,8 @@ def main():
             out.append("```bash")
             out.append(e["example"].strip())
             out.append("```\n")
+            if e.get("probe", {}).get("note"):
+                out.append(f'<sub>⚠ Status check: {e["probe"]["note"].strip()}</sub>\n')
             last_ok = status.get(e["id"], {}).get("last_ok")
             if last_ok:
                 out.append(f"<sub>Last seen working: {last_ok}</sub>\n")

@@ -60,7 +60,9 @@ def probe(entry):
         return result
 
     needle = p.get("expect_contains")
-    if needle and needle not in r.text:
+    # Case-insensitive: APIs are inconsistent about JSON key casing, and a
+    # capitalisation change is not the same as an API breaking.
+    if needle and str(needle).lower() not in r.text.lower():
         # 200 OK with the wrong body is the failure mode that kills these lists:
         # the endpoint "works" but now returns a login page or an error envelope.
         result["state"] = "changed"

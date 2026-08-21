@@ -38,7 +38,10 @@
   free: Unmetered at time of writing. Paginated for large states.
   probe:
     url: https://api.pincodeapi.in/api/v1/pincode/110001
-    expect_contains: pincode
+    # The requested PIN is echoed in the response. Normally prefer a field name
+    # over a value, but a request parameter coming back is about as stable as
+    # it gets, and this API's key casing was not what the docs implied.
+    expect_contains: "110001"
   example: |
     curl -s "https://api.pincodeapi.in/api/v1/search?q=Connaught%20Place"
 
@@ -86,8 +89,11 @@
     Dataset quality is uneven and resource IDs change without warning. Pin the
     resource ID you use and check it on every deploy.
   probe:
-    url: https://api.data.gov.in/
-    expect_status: [200, 301, 302, 403]
+    url: https://www.data.gov.in/
+    expect_status: [200, 301, 302]
+    note: >
+      Liveness only. The API itself needs a key, which this public repo has no
+      business holding, so we check the platform is reachable and no more.
   example: |
     # Sign up at data.gov.in, then:
     curl -s "https://api.data.gov.in/resource/RESOURCE_ID?api-key=YOUR_KEY&format=json&limit=5"
