@@ -1,31 +1,31 @@
 {
- "checked_at": "2026-08-21T22:25:01+00:00",
+ "checked_at": "2026-08-21T22:30:29+00:00",
  "results": {
   "postal-pincode": {
-   "ms": 373,
+   "ms": 367,
    "http": 200,
    "cors": true,
    "state": "up",
    "last_ok": "2026-08-21"
   },
   "pincodeapi-in": {
-   "ms": 95,
+   "ms": 335,
    "http": 200,
    "cors": true,
    "state": "changed",
    "reason": "missing 'officename' in response",
-   "body": "{\"success\":true,\"data\":{\"api\":\"/v1\",\"documentation\":\"See openapi.yaml in the distribution.\",\"health\":\"/v1/health\",\"service\":\"PincodeAPI.in\"},\"meta\":{\"api_version\":\"v1\",\"dataset_version\":\"2026-06-27\",\"",
+   "body": "{\"success\":true,\"data\":{\"pincode\":\"110001\",\"post_offices\":[{\"id\":29844,\"circle\":\"Delhi Circle\",\"circle_slug\":\"delhi-circle\",\"region\":\"Divreportingcircle\",\"region_slug\":\"divreportingcircle\",\"division\":",
    "last_ok": null
   },
   "india-pincode-static": {
-   "ms": 93,
+   "ms": 101,
    "http": 200,
    "cors": true,
    "state": "up",
    "last_ok": "2026-08-21"
   },
   "razorpay-ifsc": {
-   "ms": 774,
+   "ms": 662,
    "http": 200,
    "cors": true,
    "state": "up",
