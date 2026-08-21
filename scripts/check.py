@@ -32,6 +32,17 @@ UA = "india-dev-apis-checker/1.0 (+https://github.com/hetanshdoshi25-max/india-d
 HEADERS = {"User-Agent": UA, "Accept": "application/json", "Origin": "https://example.com"}
 
 
+def snippet(r, n=200):
+    """
+    First n characters of a failed response, flattened to one line.
+
+    Without this, diagnosing a red entry means reproducing the request by hand.
+    With it, the CI log tells you what the API actually said — which is usually
+    enough to fix the probe in one go.
+    """
+    return " ".join(r.text[:n].split())
+
+
 def probe(entry):
     p = entry.get("probe")
     if not p:
@@ -57,6 +68,7 @@ def probe(entry):
     if r.status_code not in expect:
         result["state"] = "down"
         result["reason"] = f"HTTP {r.status_code}"
+        result["body"] = snippet(r)
         return result
 
     needle = p.get("expect_contains")
@@ -67,6 +79,7 @@ def probe(entry):
         # the endpoint "works" but now returns a login page or an error envelope.
         result["state"] = "changed"
         result["reason"] = f"missing {needle!r} in response"
+        result["body"] = snippet(r)
         return result
 
     result["state"] = "up"
@@ -94,6 +107,8 @@ def main():
         results[e["id"]] = r
         print(f"{e['id']:24} {r['state']:10} {r.get('ms', '-')}ms "
               f"cors={r.get('cors')} {r.get('reason', '')}")
+        if r.get("body"):
+            print(f"{'':24} └─ got: {r['body']}")
 
     os.makedirs(os.path.join(ROOT, "data"), exist_ok=True)
     with open(path, "w", encoding="utf-8") as f:

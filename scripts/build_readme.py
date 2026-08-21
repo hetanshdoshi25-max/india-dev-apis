@@ -113,6 +113,8 @@ def main():
             out.append(f'### {e["name"]}\n')
             out.append(f'{e["what"]}\n')
             out.append(f'**Free tier —** {e["free"]}\n')
+            if e.get("licence"):
+                out.append(f'**Licence —** {e["licence"]}\n')
             if e.get("notes"):
                 out.append(f'{e["notes"].strip()}\n')
             out.append("```bash")

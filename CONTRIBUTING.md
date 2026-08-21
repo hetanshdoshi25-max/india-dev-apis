@@ -52,6 +52,19 @@ python scripts/build_readme.py
 - **Entries with no probe.** These show as ⚪ unchecked and can't be merged.
 - **Dead or paywalled APIs.** If the free tier disappeared, it leaves the list.
 
+## Wanted
+
+Entries we'd like but haven't been able to verify. A PR with a working `probe`
+is the whole contribution:
+
+- **[data.gov.in](https://data.gov.in)** — the government open-data platform.
+  Genuinely useful, but it needs an API key, and this repo holds no secrets by
+  design. If you can find an unauthenticated URL that reliably proves the
+  service is alive, open a PR. It was in the list briefly and removed for
+  exactly this reason.
+- **UPI / NPCI**, **GSTIN verification**, **vehicle registration** — all seem
+  to be paywalled or KYC-gated. Happy to be proven wrong.
+
 ## Reporting a broken API
 
 Open an issue with the `id` and what you saw. If the daily check already caught
