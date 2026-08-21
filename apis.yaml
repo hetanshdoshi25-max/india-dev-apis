@@ -36,13 +36,22 @@
   docs: https://api.pincodeapi.in/
   auth: none
   free: Unmetered at time of writing. Paginated for large states.
+  notes: >
+    Two things the published docs get wrong, both found by this repo's checker.
+    First, the live base path is /v1/, not the /api/v1/ shown in the docs.
+    Second — and this is the dangerous one — an unknown path does not 404. It
+    returns HTTP 200 with the API index document, so a wrong URL looks like a
+    successful request and your parser silently gets nothing. Check for the
+    field you expect, not for status 200.
   probe:
-    url: https://api.pincodeapi.in/api/v1/pincode/110001
-    # Responses look like {"status":"success","data":[{"officename":...}]} —
-    # the PIN itself is NOT echoed back, which is what broke the first probe.
+    url: https://api.pincodeapi.in/v1/pincode/110001
+    # Real lookups return {"status":"success","data":[{"officename":...}]}.
+    # The index document does NOT contain 'officename', so this needle is what
+    # distinguishes a real hit from the 200-OK-but-wrong-path trap above.
     expect_contains: officename
   example: |
-    curl -s "https://api.pincodeapi.in/api/v1/search?q=Connaught%20Place"
+    curl -s https://api.pincodeapi.in/v1/pincode/110001
+    curl -s "https://api.pincodeapi.in/v1/search?q=Connaught%20Place"
 
 - id: india-pincode-static
   name: India Pincode API (static)
