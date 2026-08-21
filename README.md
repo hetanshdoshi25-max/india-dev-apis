@@ -10,16 +10,16 @@ only honest option.
 
 <!-- This file is generated. Edit apis.yaml, not this. -->
 
-**Last checked: 2026-08-21** · 3 up · 1 down · 1 other
+**Last checked: 2026-08-21** · 3 up · 0 down · 1 other
 
 
 ## Location & postal
 
 | API | What you get | Status | Auth | CORS | Latency |
 |---|---|---|---|---|---|
-| [Postal PIN Code](http://www.postalpincode.in/Api-Details) | Post office name, district, state, delivery status for any 6-digit PIN. | 🟢 up | none | yes | 372 ms |
-| [PincodeAPI.in](https://api.pincodeapi.in/) | Same postal dataset, plus search-as-you-type and state/district listing. | 🟠 changed | none | yes | 826 ms |
-| [India Pincode API (static)](https://aniket-thapa.github.io/india-pincode-api/) | Every PIN as a flat JSON file on GitHub Pages. No server, so nothing to rate-limit. | 🟢 up | none | yes | 44 ms |
+| [Postal PIN Code](http://www.postalpincode.in/Api-Details) | Post office name, district, state, delivery status for any 6-digit PIN. | 🟢 up | none | yes | 373 ms |
+| [PincodeAPI.in](https://api.pincodeapi.in/) | Same postal dataset, plus search-as-you-type and state/district listing. | 🟠 changed | none | yes | 95 ms |
+| [India Pincode API (static)](https://aniket-thapa.github.io/india-pincode-api/) | Every PIN as a flat JSON file on GitHub Pages. No server, so nothing to rate-limit. | 🟢 up | none | yes | 93 ms |
 
 ### Postal PIN Code
 
@@ -49,7 +49,9 @@ Every PIN as a flat JSON file on GitHub Pages. No server, so nothing to rate-lim
 
 **Free tier —** Unlimited — it is static hosting, not an API server.
 
-Best choice when you need bulk lookups or offline data. Worst choice when you need freshness: it updates only when the maintainer regenerates it.
+**Licence —** CC BY-NC 4.0
+
+Non-commercial licence — check this before you ship it in a paid product; the other two entries here have no such restriction. Best choice for bulk or offline lookups. Worst choice when you need freshness: it only updates when the maintainer regenerates the files.
 
 ```bash
 curl -s https://aniket-thapa.github.io/india-pincode-api/pincodes/400001.json
@@ -61,7 +63,7 @@ curl -s https://aniket-thapa.github.io/india-pincode-api/pincodes/400001.json
 
 | API | What you get | Status | Auth | CORS | Latency |
 |---|---|---|---|---|---|
-| [Razorpay IFSC](https://github.com/razorpay/ifsc/wiki/API) | Bank, branch, address, MICR/SWIFT, and NEFT/RTGS/IMPS/UPI flags for an IFSC code. | 🟢 up | none | yes | 718 ms |
+| [Razorpay IFSC](https://github.com/razorpay/ifsc/wiki/API) | Bank, branch, address, MICR/SWIFT, and NEFT/RTGS/IMPS/UPI flags for an IFSC code. | 🟢 up | none | yes | 774 ms |
 
 ### Razorpay IFSC
 
@@ -76,27 +78,6 @@ curl -s https://ifsc.razorpay.com/HDFC0000001
 ```
 
 <sub>Last seen working: 2026-08-21</sub>
-
-## Government & open data
-
-| API | What you get | Status | Auth | CORS | Latency |
-|---|---|---|---|---|---|
-| [data.gov.in OGD Platform](https://data.gov.in/help/how-use-datasets-apis) | Thousands of government datasets as REST resources — crops, fuel prices, census, more. | 🔴 down | API key | no | 426 ms |
-
-### data.gov.in OGD Platform
-
-Thousands of government datasets as REST resources — crops, fuel prices, census, more.
-
-**Free tier —** Free key after signup. Per-key rate limits apply.
-
-Dataset quality is uneven and resource IDs change without warning. Pin the resource ID you use and check it on every deploy.
-
-```bash
-# Sign up at data.gov.in, then:
-curl -s "https://api.data.gov.in/resource/RESOURCE_ID?api-key=YOUR_KEY&format=json&limit=5"
-```
-
-<sub>⚠ Status check: Liveness only. The API itself needs a key, which this public repo has no business holding, so we check the platform is reachable and no more.</sub>
 
 
 ## What the columns mean
