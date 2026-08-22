@@ -1,31 +1,29 @@
 {
- "checked_at": "2026-08-22T04:54:08+00:00",
+ "checked_at": "2026-08-22T10:50:41+00:00",
  "results": {
   "postal-pincode": {
-   "ms": 303,
+   "ms": 190,
    "http": 200,
    "cors": true,
    "state": "up",
    "last_ok": "2026-08-22"
   },
   "pincodeapi-in": {
-   "ms": 321,
+   "ms": 242,
    "http": 200,
    "cors": true,
-   "state": "changed",
-   "reason": "missing 'officename' in response",
-   "body": "{\"success\":true,\"data\":{\"pincode\":\"110001\",\"post_offices\":[{\"id\":29844,\"circle\":\"Delhi Circle\",\"circle_slug\":\"delhi-circle\",\"region\":\"Divreportingcircle\",\"region_slug\":\"divreportingcircle\",\"division\":",
-   "last_ok": null
+   "state": "up",
+   "last_ok": "2026-08-22"
   },
   "india-pincode-static": {
-   "ms": 84,
+   "ms": 147,
    "http": 200,
    "cors": true,
    "state": "up",
    "last_ok": "2026-08-22"
   },
   "razorpay-ifsc": {
-   "ms": 838,
+   "ms": 732,
    "http": 200,
    "cors": true,
    "state": "up",

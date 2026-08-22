@@ -10,16 +10,16 @@ only honest option.
 
 <!-- This file is generated. Edit apis.yaml, not this. -->
 
-**Last checked: 2026-08-22** · 3 up · 0 down · 1 other
+**Last checked: 2026-08-22** · 4 up · 0 down · 0 other
 
 
 ## Location & postal
 
 | API | What you get | Status | Auth | CORS | Latency |
 |---|---|---|---|---|---|
-| [Postal PIN Code](http://www.postalpincode.in/Api-Details) | Post office name, district, state, delivery status for any 6-digit PIN. | 🟢 up | none | yes | 303 ms |
-| [PincodeAPI.in](https://api.pincodeapi.in/) | Same postal dataset, plus search-as-you-type and state/district listing. | 🟠 changed | none | yes | 321 ms |
-| [India Pincode API (static)](https://aniket-thapa.github.io/india-pincode-api/) | Every PIN as a flat JSON file on GitHub Pages. No server, so nothing to rate-limit. | 🟢 up | none | yes | 84 ms |
+| [Postal PIN Code](http://www.postalpincode.in/Api-Details) | Post office name, district, state, delivery status for any 6-digit PIN. | 🟢 up | none | yes | 190 ms |
+| [PincodeAPI.in](https://api.pincodeapi.in/) | Same postal dataset, nested under data.post_offices, plus search and district listing. | 🟢 up | none | yes | 242 ms |
+| [India Pincode API (static)](https://aniket-thapa.github.io/india-pincode-api/) | Every PIN as a flat JSON file on GitHub Pages. No server, so nothing to rate-limit. | 🟢 up | none | yes | 147 ms |
 
 ### Postal PIN Code
 
@@ -35,16 +35,18 @@ curl -s https://api.postalpincode.in/pincode/400001
 
 ### PincodeAPI.in
 
-Same postal dataset, plus search-as-you-type and state/district listing.
+Same postal dataset, nested under data.post_offices, plus search and district listing.
 
 **Free tier —** Unmetered at time of writing. Paginated for large states.
 
-Two things the published docs get wrong, both found by this repo's checker. First, the live base path is /v1/, not the /api/v1/ shown in the docs. Second — and this is the dangerous one — an unknown path does not 404. It returns HTTP 200 with the API index document, so a wrong URL looks like a successful request and your parser silently gets nothing. Check for the field you expect, not for status 200.
+The published docs are stale in three separate ways — all found by this repo's daily checker, none of them mentioned upstream. (1) The live base path is /v1/, not /api/v1/. (2) Results are nested under data.post_offices, not a flat data array. (3) Fields are snake_case — post_offices, circle_slug — not the flat lowercase names the docs show. Worst of all, an unknown path does not 404: it returns HTTP 200 with the API index document, so a wrong URL looks like a successful request while your parser silently gets nothing. Always assert on a field you expect, never on status 200 alone.
 
 ```bash
 curl -s https://api.pincodeapi.in/v1/pincode/110001
 curl -s "https://api.pincodeapi.in/v1/search?q=Connaught%20Place"
 ```
+
+<sub>Last seen working: 2026-08-22</sub>
 
 ### India Pincode API (static)
 
@@ -66,7 +68,7 @@ curl -s https://aniket-thapa.github.io/india-pincode-api/pincodes/400001.json
 
 | API | What you get | Status | Auth | CORS | Latency |
 |---|---|---|---|---|---|
-| [Razorpay IFSC](https://github.com/razorpay/ifsc/wiki/API) | Bank, branch, address, MICR/SWIFT, and NEFT/RTGS/IMPS/UPI flags for an IFSC code. | 🟢 up | none | yes | 838 ms |
+| [Razorpay IFSC](https://github.com/razorpay/ifsc/wiki/API) | Bank, branch, address, MICR/SWIFT, and NEFT/RTGS/IMPS/UPI flags for an IFSC code. | 🟢 up | none | yes | 732 ms |
 
 ### Razorpay IFSC
 
