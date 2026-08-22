@@ -12,14 +12,36 @@ only honest option.
 
 **Last checked: 2026-08-22** · 4 up · 0 down · 0 other
 
+## What the checking actually caught
+
+Not a hypothetical. On day one, the checker found that
+**PincodeAPI.in's published documentation is wrong in three separate ways**:
+
+| Docs say | Actually |
+|---|---|
+| Base path `/api/v1/` | `/v1/` |
+| Results in a flat `data` array | Nested under `data.post_offices` |
+| Fields like `officename` | snake_case — `post_offices`, `circle_slug` |
+
+And the part that will cost you an afternoon: **a wrong path does not 404.** It
+returns `HTTP 200` with the API's index document. So if you follow those docs,
+your request succeeds, your status check passes, and your parser silently finds
+nothing. There is no error to search for.
+
+The fix is a habit worth stealing regardless of which API you're using: **assert
+on a field you expect, never on `200` alone.** That's exactly what this repo's
+probes do — see `expect_contains` in [apis.yaml](apis.yaml).
+
+None of this is in any other list, because no other list checks.
+
 
 ## Location & postal
 
 | API | What you get | Status | Auth | CORS | Latency |
 |---|---|---|---|---|---|
-| [Postal PIN Code](http://www.postalpincode.in/Api-Details) | Post office name, district, state, delivery status for any 6-digit PIN. | 🟢 up | none | yes | 190 ms |
-| [PincodeAPI.in](https://api.pincodeapi.in/) | Same postal dataset, nested under data.post_offices, plus search and district listing. | 🟢 up | none | yes | 242 ms |
-| [India Pincode API (static)](https://aniket-thapa.github.io/india-pincode-api/) | Every PIN as a flat JSON file on GitHub Pages. No server, so nothing to rate-limit. | 🟢 up | none | yes | 147 ms |
+| [Postal PIN Code](http://www.postalpincode.in/Api-Details) | Post office name, district, state, delivery status for any 6-digit PIN. | 🟢 up | none | yes | 336 ms |
+| [PincodeAPI.in](https://api.pincodeapi.in/) | Same postal dataset, nested under data.post_offices, plus search and district listing. | 🟢 up | none | yes | 313 ms |
+| [India Pincode API (static)](https://aniket-thapa.github.io/india-pincode-api/) | Every PIN as a flat JSON file on GitHub Pages. No server, so nothing to rate-limit. | 🟢 up | none | yes | 144 ms |
 
 ### Postal PIN Code
 
@@ -68,7 +90,7 @@ curl -s https://aniket-thapa.github.io/india-pincode-api/pincodes/400001.json
 
 | API | What you get | Status | Auth | CORS | Latency |
 |---|---|---|---|---|---|
-| [Razorpay IFSC](https://github.com/razorpay/ifsc/wiki/API) | Bank, branch, address, MICR/SWIFT, and NEFT/RTGS/IMPS/UPI flags for an IFSC code. | 🟢 up | none | yes | 732 ms |
+| [Razorpay IFSC](https://github.com/razorpay/ifsc/wiki/API) | Bank, branch, address, MICR/SWIFT, and NEFT/RTGS/IMPS/UPI flags for an IFSC code. | 🟢 up | none | yes | 817 ms |
 
 ### Razorpay IFSC
 
