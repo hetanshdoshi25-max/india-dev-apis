@@ -34,8 +34,8 @@ python scripts/build_readme.py
 
 ## Picking a good probe
 
-- Use a **boring, permanent** example — Mumbai GPO (`400001`), a large bank
-  branch. Not something seasonal or user-specific.
+- Use a **boring, permanent** example, such as Mumbai GPO (`400001`) or a large
+  bank branch. Not something seasonal or user-specific.
 - `expect_contains` should be a **field name from the response body**, not a
   value. Values change; schemas mostly don't.
 - If the API needs a key, probe an unauthenticated URL that still proves the
@@ -48,7 +48,7 @@ python scripts/build_readme.py
 
 - **Scraped internal endpoints.** NSE, BSE, IRCTC and friends. They break
   weekly and using them probably violates the site's terms.
-- **RapidAPI resellers** of something already free upstream — link the upstream.
+- **RapidAPI resellers** of something already free upstream. Link the upstream.
 - **Entries with no probe.** These show as ⚪ unchecked and can't be merged.
 - **Dead or paywalled APIs.** If the free tier disappeared, it leaves the list.
 
@@ -57,16 +57,16 @@ python scripts/build_readme.py
 Entries we'd like but haven't been able to verify. A PR with a working `probe`
 is the whole contribution:
 
-- **[data.gov.in](https://data.gov.in)** — the government open-data platform.
+- **[data.gov.in](https://data.gov.in)**, the government open-data platform.
   Genuinely useful, but it needs an API key, and this repo holds no secrets by
   design. If you can find an unauthenticated URL that reliably proves the
   service is alive, open a PR. It was in the list briefly and removed for
   exactly this reason.
-- **UPI / NPCI**, **GSTIN verification**, **vehicle registration** — all seem
+- **UPI / NPCI**, **GSTIN verification**, **vehicle registration**. All seem
   to be paywalled or KYC-gated. Happy to be proven wrong.
 
 ## Reporting a broken API
 
 Open an issue with the `id` and what you saw. If the daily check already caught
-it the table will show 🔴 or 🟠 — a PR removing it, or a `notes:` line
+it the table will show 🔴 or 🟠 , a PR removing it, or a `notes:` line
 explaining the change, is very welcome.

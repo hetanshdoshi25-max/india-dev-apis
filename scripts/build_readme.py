@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-build_readme.py — apis.yaml + data/status.json -> README.md
+build_readme.py: apis.yaml + data/status.json -> README.md
 
 README.md is a build artifact. Edit apis.yaml instead.
 
@@ -29,8 +29,8 @@ AUTH = {
 
 HEAD = """# India dev APIs
 
-APIs you actually need when you're building for India — postal, banking,
-government data — with one thing no other list gives you: **every endpoint is
+APIs you actually need when you're building for India: postal, banking and
+government data, with one thing no other list gives you. **Every endpoint is
 pinged by a robot every day.**
 
 Status, latency and CORS support in the table below are measured, not copied
@@ -50,7 +50,7 @@ Not a hypothetical. On day one, the checker found that
 |---|---|
 | Base path `/api/v1/` | `/v1/` |
 | Results in a flat `data` array | Nested under `data.post_offices` |
-| Fields like `officename` | snake_case — `post_offices`, `circle_slug` |
+| Fields like `officename` | snake_case: `post_offices`, `circle_slug` |
 
 And the part that will cost you an afternoon: **a wrong path does not 404.** It
 returns `HTTP 200` with the API's index document. So if you follow those docs,
@@ -59,7 +59,7 @@ nothing. There is no error to search for.
 
 The fix is a habit worth stealing regardless of which API you're using: **assert
 on a field you expect, never on `200` alone.** That's exactly what this repo's
-probes do — see `expect_contains` in [apis.yaml](apis.yaml).
+probes do. See `expect_contains` in [apis.yaml](apis.yaml).
 
 None of this is in any other list, because no other list checks.
 
@@ -70,15 +70,15 @@ FOOT = """
 
 | Column | |
 |---|---|
-| **Status** | Result of a real GET request, run daily by [GitHub Actions](.github/workflows/check.yml). 🟠 *changed* means it returned 200 but the body no longer looks right — usually the sign an API went behind a login. |
+| **Status** | Result of a real GET request, run daily by [GitHub Actions](.github/workflows/check.yml). 🟠 *changed* means it returned 200 but the body no longer looks right, usually the sign an API went behind a login. |
 | **Auth** | `none` means no signup, no key, no header. |
-| **CORS** | Detected from the `Access-Control-Allow-Origin` header on a real cross-origin request. If this says no, you need a backend proxy — you cannot call it from the browser. |
+| **CORS** | Detected from the `Access-Control-Allow-Origin` header on a real cross-origin request. If this says no, you need a backend proxy. You cannot call it from the browser. |
 | **Latency** | Single sample from a GitHub Actions runner in the US. Treat as a rough signal, not a benchmark. From India it will usually be faster. |
 
 ## Adding an API
 
 Open a PR editing `apis.yaml`. Every entry needs a `probe` block so the checker
-can verify it — entries without one show as ⚪ unchecked and won't be merged.
+can verify it. Entries without one show as ⚪ unchecked and won't be merged.
 See [CONTRIBUTING.md](CONTRIBUTING.md).
 
 ## Deliberately not here
@@ -90,7 +90,7 @@ See [CONTRIBUTING.md](CONTRIBUTING.md).
 
 ## Licence
 
-[MIT](LICENSE). The list is a set of links and facts — the APIs themselves are
+[MIT](LICENSE). The list is a set of links and facts. The APIs themselves are
 owned by their respective providers and carry their own terms.
 """
 
@@ -125,8 +125,8 @@ def main():
         for e in items:
             s = status.get(e["id"], {})
             state = STATE.get(s.get("state", "unchecked"), "⚪ unchecked")
-            cors = {True: "yes", False: "no"}.get(s.get("cors"), "—")
-            ms = f'{s["ms"]} ms' if s.get("ms") else "—"
+            cors = {True: "yes", False: "no"}.get(s.get("cors"), "n/a")
+            ms = f'{s["ms"]} ms' if s.get("ms") else "n/a"
             out.append(f'| [{e["name"]}]({e["docs"]}) | {e["what"]} | {state} '
                        f'| {AUTH.get(e["auth"], e["auth"])} | {cors} | {ms} |')
         out.append("")
@@ -134,9 +134,9 @@ def main():
         for e in items:
             out.append(f'### {e["name"]}\n')
             out.append(f'{e["what"]}\n')
-            out.append(f'**Free tier —** {e["free"]}\n')
+            out.append(f'**Free tier:** {e["free"]}\n')
             if e.get("licence"):
-                out.append(f'**Licence —** {e["licence"]}\n')
+                out.append(f'**Licence:** {e["licence"]}\n')
             if e.get("notes"):
                 out.append(f'{e["notes"].strip()}\n')
             out.append("```bash")
@@ -152,7 +152,7 @@ def main():
 
     with open(os.path.join(ROOT, "README.md"), "w", encoding="utf-8") as f:
         f.write("\n".join(out))
-    print(f"wrote README.md — {len(entries)} entries, "
+    print(f"wrote README.md: {len(entries)} entries, "
           f"{counts['up']} up / {counts['down']} down")
 
 

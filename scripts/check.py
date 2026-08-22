@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-check.py — fires one real request at every API in apis.yaml and records what
+check.py fires one real request at every API in apis.yaml and records what
 actually happened.
 
 This is the point of the whole repo. Published API docs go stale, aggregator
@@ -37,7 +37,7 @@ def snippet(r, n=200):
     First n characters of a failed response, flattened to one line.
 
     Without this, diagnosing a red entry means reproducing the request by hand.
-    With it, the CI log tells you what the API actually said — which is usually
+    With it, the CI log tells you what the API actually said, which is usually
     enough to fix the probe in one go.
     """
     return " ".join(r.text[:n].split())
@@ -108,7 +108,7 @@ def main():
         print(f"{e['id']:24} {r['state']:10} {r.get('ms', '-')}ms "
               f"cors={r.get('cors')} {r.get('reason', '')}")
         if r.get("body"):
-            print(f"{'':24} └─ got: {r['body']}")
+            print(f"{'':24}   got: {r['body']}")
 
     os.makedirs(os.path.join(ROOT, "data"), exist_ok=True)
     with open(path, "w", encoding="utf-8") as f:
@@ -118,7 +118,7 @@ def main():
 
     broken = [k for k, v in results.items() if v["state"] in ("down", "changed")]
     if broken:
-        # Don't fail the build — a dead API is data, not an error. The README
+        # Don't fail the build. A dead API is data, not an error. The README
         # should ship saying "this one is down", which is exactly the value.
         print(f"\nnote: {len(broken)} entr{'y' if len(broken) == 1 else 'ies'} "
               f"unhealthy: {', '.join(broken)}", file=sys.stderr)
