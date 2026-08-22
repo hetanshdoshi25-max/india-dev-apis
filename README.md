@@ -10,16 +10,16 @@ only honest option.
 
 <!-- This file is generated. Edit apis.yaml, not this. -->
 
-**Last checked: 2026-08-21** · 3 up · 0 down · 1 other
+**Last checked: 2026-08-22** · 3 up · 0 down · 1 other
 
 
 ## Location & postal
 
 | API | What you get | Status | Auth | CORS | Latency |
 |---|---|---|---|---|---|
-| [Postal PIN Code](http://www.postalpincode.in/Api-Details) | Post office name, district, state, delivery status for any 6-digit PIN. | 🟢 up | none | yes | 367 ms |
-| [PincodeAPI.in](https://api.pincodeapi.in/) | Same postal dataset, plus search-as-you-type and state/district listing. | 🟠 changed | none | yes | 335 ms |
-| [India Pincode API (static)](https://aniket-thapa.github.io/india-pincode-api/) | Every PIN as a flat JSON file on GitHub Pages. No server, so nothing to rate-limit. | 🟢 up | none | yes | 101 ms |
+| [Postal PIN Code](http://www.postalpincode.in/Api-Details) | Post office name, district, state, delivery status for any 6-digit PIN. | 🟢 up | none | yes | 303 ms |
+| [PincodeAPI.in](https://api.pincodeapi.in/) | Same postal dataset, plus search-as-you-type and state/district listing. | 🟠 changed | none | yes | 321 ms |
+| [India Pincode API (static)](https://aniket-thapa.github.io/india-pincode-api/) | Every PIN as a flat JSON file on GitHub Pages. No server, so nothing to rate-limit. | 🟢 up | none | yes | 84 ms |
 
 ### Postal PIN Code
 
@@ -31,7 +31,7 @@ Post office name, district, state, delivery status for any 6-digit PIN.
 curl -s https://api.postalpincode.in/pincode/400001
 ```
 
-<sub>Last seen working: 2026-08-21</sub>
+<sub>Last seen working: 2026-08-22</sub>
 
 ### PincodeAPI.in
 
@@ -60,13 +60,13 @@ Non-commercial licence — check this before you ship it in a paid product; the 
 curl -s https://aniket-thapa.github.io/india-pincode-api/pincodes/400001.json
 ```
 
-<sub>Last seen working: 2026-08-21</sub>
+<sub>Last seen working: 2026-08-22</sub>
 
 ## Banking & finance
 
 | API | What you get | Status | Auth | CORS | Latency |
 |---|---|---|---|---|---|
-| [Razorpay IFSC](https://github.com/razorpay/ifsc/wiki/API) | Bank, branch, address, MICR/SWIFT, and NEFT/RTGS/IMPS/UPI flags for an IFSC code. | 🟢 up | none | yes | 662 ms |
+| [Razorpay IFSC](https://github.com/razorpay/ifsc/wiki/API) | Bank, branch, address, MICR/SWIFT, and NEFT/RTGS/IMPS/UPI flags for an IFSC code. | 🟢 up | none | yes | 838 ms |
 
 ### Razorpay IFSC
 
@@ -80,7 +80,7 @@ Built from RBI's own datasets, MIT licensed, and downloadable in bulk if you wou
 curl -s https://ifsc.razorpay.com/HDFC0000001
 ```
 
-<sub>Last seen working: 2026-08-21</sub>
+<sub>Last seen working: 2026-08-22</sub>
 
 
 ## What the columns mean
