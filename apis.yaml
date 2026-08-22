@@ -32,23 +32,27 @@
 - id: pincodeapi-in
   name: PincodeAPI.in
   category: Location & postal
-  what: Same postal dataset, plus search-as-you-type and state/district listing.
+  what: Same postal dataset, nested under data.post_offices, plus search and district listing.
   docs: https://api.pincodeapi.in/
   auth: none
   free: Unmetered at time of writing. Paginated for large states.
   notes: >
-    Two things the published docs get wrong, both found by this repo's checker.
-    First, the live base path is /v1/, not the /api/v1/ shown in the docs.
-    Second — and this is the dangerous one — an unknown path does not 404. It
-    returns HTTP 200 with the API index document, so a wrong URL looks like a
-    successful request and your parser silently gets nothing. Check for the
-    field you expect, not for status 200.
+    The published docs are stale in three separate ways — all found by this
+    repo's daily checker, none of them mentioned upstream. (1) The live base
+    path is /v1/, not /api/v1/. (2) Results are nested under data.post_offices,
+    not a flat data array. (3) Fields are snake_case — post_offices, circle_slug
+    — not the flat lowercase names the docs show. Worst of all, an unknown path
+    does not 404: it returns HTTP 200 with the API index document, so a wrong
+    URL looks like a successful request while your parser silently gets nothing.
+    Always assert on a field you expect, never on status 200 alone.
   probe:
     url: https://api.pincodeapi.in/v1/pincode/110001
-    # Real lookups return {"status":"success","data":[{"officename":...}]}.
-    # The index document does NOT contain 'officename', so this needle is what
-    # distinguishes a real hit from the 200-OK-but-wrong-path trap above.
-    expect_contains: officename
+    # Verified live response shape:
+    #   {"success":true,"data":{"pincode":"110001","post_offices":[{...}]}}
+    # 'post_offices' is a structural key, so it survives data changes, and it is
+    # absent from the API index document — which is what makes it a real check
+    # against the 200-OK-but-wrong-path trap described above.
+    expect_contains: post_offices
   example: |
     curl -s https://api.pincodeapi.in/v1/pincode/110001
     curl -s "https://api.pincodeapi.in/v1/search?q=Connaught%20Place"
