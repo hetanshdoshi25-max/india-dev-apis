@@ -41,6 +41,28 @@ only honest option.
 
 **Last checked: {checked}** · {up} up · {down} down · {other} other
 
+## What the checking actually caught
+
+Not a hypothetical. On day one, the checker found that
+**PincodeAPI.in's published documentation is wrong in three separate ways**:
+
+| Docs say | Actually |
+|---|---|
+| Base path `/api/v1/` | `/v1/` |
+| Results in a flat `data` array | Nested under `data.post_offices` |
+| Fields like `officename` | snake_case — `post_offices`, `circle_slug` |
+
+And the part that will cost you an afternoon: **a wrong path does not 404.** It
+returns `HTTP 200` with the API's index document. So if you follow those docs,
+your request succeeds, your status check passes, and your parser silently finds
+nothing. There is no error to search for.
+
+The fix is a habit worth stealing regardless of which API you're using: **assert
+on a field you expect, never on `200` alone.** That's exactly what this repo's
+probes do — see `expect_contains` in [apis.yaml](apis.yaml).
+
+None of this is in any other list, because no other list checks.
+
 """
 
 FOOT = """
