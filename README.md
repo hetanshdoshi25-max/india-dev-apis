@@ -10,7 +10,7 @@ only honest option.
 
 <!-- This file is generated. Edit apis.yaml, not this. -->
 
-**Last checked: 2026-08-24** · 4 up · 0 down · 0 other
+**Last checked: 2026-08-25** · 4 up · 0 down · 0 other
 
 ## What the checking actually caught
 
@@ -39,9 +39,9 @@ None of this is in any other list, because no other list checks.
 
 | API | What you get | Status | Auth | CORS | Latency |
 |---|---|---|---|---|---|
-| [Postal PIN Code](http://www.postalpincode.in/Api-Details) | Post office name, district, state, delivery status for any 6-digit PIN. | 🟢 up | none | yes | 724 ms |
-| [PincodeAPI.in](https://api.pincodeapi.in/) | Same postal dataset, nested under data.post_offices, plus search and district listing. | 🟢 up | none | yes | 610 ms |
-| [India Pincode API (static)](https://aniket-thapa.github.io/india-pincode-api/) | Every PIN as a flat JSON file on GitHub Pages. No server, so nothing to rate-limit. | 🟢 up | none | yes | 127 ms |
+| [Postal PIN Code](http://www.postalpincode.in/Api-Details) | Post office name, district, state, delivery status for any 6-digit PIN. | 🟢 up | none | yes | 293 ms |
+| [PincodeAPI.in](https://api.pincodeapi.in/) | Same postal dataset, nested under data.post_offices, plus search and district listing. | 🟢 up | none | yes | 586 ms |
+| [India Pincode API (static)](https://aniket-thapa.github.io/india-pincode-api/) | Every PIN as a flat JSON file on GitHub Pages. No server, so nothing to rate-limit. | 🟢 up | none | yes | 114 ms |
 
 ### Postal PIN Code
 
@@ -53,7 +53,7 @@ Post office name, district, state, delivery status for any 6-digit PIN.
 curl -s https://api.postalpincode.in/pincode/400001
 ```
 
-<sub>Last seen working: 2026-08-24</sub>
+<sub>Last seen working: 2026-08-25</sub>
 
 ### PincodeAPI.in
 
@@ -68,7 +68,7 @@ curl -s https://api.pincodeapi.in/v1/pincode/110001
 curl -s "https://api.pincodeapi.in/v1/search?q=Connaught%20Place"
 ```
 
-<sub>Last seen working: 2026-08-24</sub>
+<sub>Last seen working: 2026-08-25</sub>
 
 ### India Pincode API (static)
 
@@ -84,13 +84,13 @@ Non-commercial licence. Check this before you ship it in a paid product; the oth
 curl -s https://aniket-thapa.github.io/india-pincode-api/pincodes/400001.json
 ```
 
-<sub>Last seen working: 2026-08-24</sub>
+<sub>Last seen working: 2026-08-25</sub>
 
 ## Banking & finance
 
 | API | What you get | Status | Auth | CORS | Latency |
 |---|---|---|---|---|---|
-| [Razorpay IFSC](https://github.com/razorpay/ifsc/wiki/API) | Bank, branch, address, MICR/SWIFT, and NEFT/RTGS/IMPS/UPI flags for an IFSC code. | 🟢 up | none | yes | 854 ms |
+| [Razorpay IFSC](https://github.com/razorpay/ifsc/wiki/API) | Bank, branch, address, MICR/SWIFT, and NEFT/RTGS/IMPS/UPI flags for an IFSC code. | 🟢 up | none | yes | 862 ms |
 
 ### Razorpay IFSC
 
@@ -104,7 +104,7 @@ Built from RBI's own datasets, MIT licensed, and downloadable in bulk if you wou
 curl -s https://ifsc.razorpay.com/HDFC0000001
 ```
 
-<sub>Last seen working: 2026-08-24</sub>
+<sub>Last seen working: 2026-08-25</sub>
 
 
 ## What the columns mean
