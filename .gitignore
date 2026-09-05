@@ -1,3 +1,25 @@
+# Secrets & environment
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+serviceAccountKey.json
+secrets.*
+credentials.*
+
+# Python
 __pycache__/
 *.pyc
 .venv/
+venv/
+
+# Node / JS
+node_modules/
+dist/
+build/
+
+# OS / editor junk
+.DS_Store
+.vscode/
+.idea/
