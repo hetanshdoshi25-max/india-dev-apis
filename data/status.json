@@ -1,33 +1,33 @@
 {
- "checked_at": "2026-11-05T12:32:07+00:00",
+ "checked_at": "2026-11-06T12:14:58+00:00",
  "results": {
   "postal-pincode": {
-   "ms": 316,
+   "ms": 267,
    "http": 200,
    "cors": true,
    "state": "up",
-   "last_ok": "2026-11-05"
+   "last_ok": "2026-11-06"
   },
   "pincodeapi-in": {
-   "ms": 493,
+   "ms": 589,
    "http": 200,
    "cors": true,
    "state": "up",
-   "last_ok": "2026-11-05"
+   "last_ok": "2026-11-06"
   },
   "india-pincode-static": {
-   "ms": 143,
+   "ms": 251,
    "http": 200,
    "cors": true,
    "state": "up",
-   "last_ok": "2026-11-05"
+   "last_ok": "2026-11-06"
   },
   "razorpay-ifsc": {
-   "ms": 742,
+   "ms": 733,
    "http": 200,
    "cors": true,
    "state": "up",
-   "last_ok": "2026-11-05"
+   "last_ok": "2026-11-06"
   }
  }
 }
